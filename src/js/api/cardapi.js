@@ -27,6 +27,17 @@ function create(card, url) {
     return fetch(request).then(onSuccess, onError);
 }
 
+function update(card, url){
+    const request = new Request(baseUrl + url, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(card)
+    });
+    return fetch(request).then(onSuccess, onError);
+}
+
 export function createCard(card) {
     return create(card, "cardlist");
 }
@@ -35,4 +46,7 @@ export function getCards() {
 }
 export function deleteCard(id) {
     return del(`cardlist/${id}`);
+}
+export function updateCard(card,id) {
+    return update(card,`cardlist/${id}`);
 }

@@ -1,4 +1,5 @@
-import {getCards, deleteCard, createCard} from "./api/cardapi.js"
+import { getCards, deleteCard, createCard, updateCard } from "./api/cardapi.js"
+
 let cardIDCount = 1;
 
 function deleteCardFromTableAndDB(event) {
@@ -13,7 +14,7 @@ function deleteCardFromTableAndDB(event) {
 
 
 function loadCardsToScreen(cardList) {
-    
+
     let cardsBody = "";
     cardList.forEach((card) => {
         cardsBody += createTableDataFromCard(card);
@@ -23,19 +24,27 @@ function loadCardsToScreen(cardList) {
         .getElementById("cardDetails")
         .innerHTML = cardsBody;
     applyDeleteEvents();
+    applyUpdateEvents()
 }
 
 
 function applyDeleteEvents() {
-    
+
     const deleteLinks = document.getElementsByClassName("deleteCard");
     Array.from(deleteLinks, (link) => {
         link.onclick = deleteCardFromTableAndDB;
     });
 }
 
+function applyUpdateEvents() {
+    const updateLinks = document.getElementsByClassName("updateCard");
+    Array.from(updateLinks, (link) => {
+        link.onclick = alterCardDetails;
+    });
+}
 
-function createTableDataFromCard({id, name, level, attribute, type}) {
+
+function createTableDataFromCard({ id, name, level, attribute, type }) {
     return `
     <tr>
         <td> <a href = "#" data-id="${id}" class="deleteCard"> X </a> </td>
@@ -44,6 +53,7 @@ function createTableDataFromCard({id, name, level, attribute, type}) {
         <td>${level}</td>
         <td>${attribute}</td>
         <td>${type}</td>
+        <td> <a href = "#" data-id="${id}" class="updateCard"> Update </a> </td>
     </tr>`;
 }
 
@@ -59,12 +69,26 @@ function createAndAppendCard() {
                     .getElementById("cardDetails")
                     .innerHTML += createTableDataFromCard(newCard);
                 applyDeleteEvents();
+                applyUpdateEvents();
             });
     }
 }
 
+function alterCardDetails() {
+    const element = event.target;
+    event.preventDefault();
+    const id = element.attributes["data-id"].value;
+    const cardInput = getUpdateForCardFromInputs();
+    clearInputs();
+   
+    Promise
+        .resolve(updateCard(cardInput, id))
+        .then((newCard) => {
+            alert(newCard);
+        });
+}
+
 function isValidCard(card) {
-    alert(JSON.stringify(card));
     return card.name && card.level && card.attribute && card.type;
 }
 
@@ -101,11 +125,28 @@ function getCardFromInputs() {
     }
 }
 
+function getUpdateForCardFromInputs() {
+    return {
+        name: document
+            .getElementById("cardName")
+            .value,
+        level: document
+            .getElementById("cardLevel")
+            .value,
+        attribute: document
+            .getElementById("cardAttribute")
+            .value,
+        type: document
+            .getElementById("cardType")
+            .value
+    }
+}
+
 
 window.createAndAppendCard = createAndAppendCard;
 
 
 window.onload = function () {
-    
+
     const cardList = getCards().then(loadCardsToScreen);
 }

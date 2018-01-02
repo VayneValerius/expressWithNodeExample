@@ -7,7 +7,7 @@ const router = express.Router();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors({origin:"*"}))
-app.use("/api/cardList", router);
+app.use("/api/cardlist", router);
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
