@@ -1,0 +1,88 @@
+*, :before, :after {
+    box-sizing: border-box;
+  }
+  body {
+    background: #553b5a;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  input, textarea {
+    background: none;
+    color: #c6c6c6;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 320px;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #c6c6c6;
+    text-align: center;
+    position: relative; 
+  }
+  input:focus, textarea:focus {
+    outline: none;
+  }
+  input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
+    top: -14px;
+    font-size: 12px;
+    color: #2196f3;
+  }
+  input:focus ~ .bar:before, textarea:focus ~ .bar:before {
+    width: 320px;
+  }
+
+  button {
+    background: rgb(147, 107, 255);
+    color: #686767;
+    border: none;
+    padding: 15px 15px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    
+  }
+  button:hover {
+    color: #8b8b8b;
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18), 0 5px 5px rgba(0, 0, 0, 0.12);
+  }
+
+  button-box {
+    text-align: center;
+    margin: 50px 0;
+  }
+  .inputForm {
+        text-align: center;
+        width: 50% ;
+        margin-left: auto ;
+        margin-right: auto ;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+    text-align: center;
+    border-spacing: 5px;
+  }
+
+  th {
+      color: aliceblue;
+      background:  rgb(147, 107, 255);
+  }
+
+  td {
+      color: rgb(177, 177, 177);
+      background: rgb(100, 50, 255)
+  }
+
+  .cardTable {
+      position: absolute;
+      text-align: center;
+  }

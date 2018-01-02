@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Card App</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+
+    <script src="./js/index.js" type="module"></script>
+</head>
+
+<body>
+    <div class="inputForm">
+        <div class="inputs">
+            <input type="text" id="cardName" placeholder="Card Name i.e Dank Magician">
+            <input type="text" id="cardLevel" placeholder="Card Level i.e 7">
+            <input type="text" id="cardAttribute" placeholder="Card Attribute i.e Dark">
+            <input type="text" id="cardType" placeholder="Card Type i.e Magician">
+        </div>
+        <button onclick="createAndAppendCard()">Add Card</button>
+    </div>
+
+    <table id="cardTable">
+        <h2>Cards</h2>
+        <table>
+            <thead>
+                <th>&nbsp;</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>LVL</th>
+                <th>Attribute</th>
+                <th>Type</th>
+            </thead>
+            <tbody id="cardDetails">
+            </tbody>
+        </table>
+    </table>
+</body>
+
+</html>
